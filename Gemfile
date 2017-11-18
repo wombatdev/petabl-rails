@@ -34,7 +34,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
-group :test do
+group :development, :test do
+  # gem "factory_girl_rails"
   gem 'rspec-rails'
 end
 
