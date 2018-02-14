@@ -44,17 +44,17 @@ module PetablApi
             origins 'http://localhost:8080'
             resource '*',
             :headers => :any,
-            :methods => [:get, :post, :delete, :put, :options, :head],
+            :methods => [:get, :post, :delete, :put, :head],
             :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
             :max_age => 0
         end
     end
 
     # Session
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
-    config.session_store :cookie_store, :key => '_namespace_key'
-    config.action_dispatch.cookies_serializer = :json
+    # config.middleware.use ActionDispatch::Cookies
+    # config.middleware.use ActionDispatch::Session::CookieStore
+    # config.session_store :cookie_store, :key => '_namespace_key'
+    # config.action_dispatch.cookies_serializer = :json
 
   end
 end
