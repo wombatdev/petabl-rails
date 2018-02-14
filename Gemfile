@@ -23,11 +23,24 @@ gem 'puma', '~> 3.7'
 # gem 'capistrano-rails', group: :development
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
- gem 'rack-cors'
+ gem 'rack-cors', :require => 'rack/cors'
+
+# From https://www.airpair.com/ruby-on-rails/posts/authentication-with-angularjs-and-ruby-on-rails
+# gem 'devise_token_auth', :git => 'git://github.com/lynndylanhurley/devise_token_auth.git'
+ gem 'devise_token_auth'
+ # omniauth providers
+ gem 'omniauth-github',        :git => 'git://github.com/intridea/omniauth-github.git'
+ gem 'omniauth-facebook',      :git => 'git://github.com/mkdynamic/omniauth-facebook.git'
+ gem 'omniauth-google-oauth2', :git => 'git://github.com/zquestz/omniauth-google-oauth2.git'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :development, :test do
+  # gem "factory_girl_rails"
+  gem 'rspec-rails'
 end
 
 group :development do

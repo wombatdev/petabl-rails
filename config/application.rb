@@ -34,14 +34,27 @@ module PetablApi
     # config.action_dispatch.default_headers = {
     #     'Access-Control-Allow-Origin' => 'http://localhost:8080',
     #     'Access-Control-Request-Method' => %w{GET POST OPTIONS}.join(",")
-    #   }
+    # }
+
+    # global options responder -> makes sure OPTION request for CORS endpoints work
+    # match '*path', via: [:options], to: lambda {|_| [204, { 'Content-Type' => 'text/plain' }]}
 
     config.middleware.use Rack::Cors do
         allow do
-            origins '*'
-            resource '*', :headers => :any, :methods => [:get, :post, :delete, :put, :options]
+            origins 'http://localhost:8080'
+            resource '*',
+            :headers => :any,
+            :methods => [:get, :post, :delete, :put, :options, :head],
+            :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+            :max_age => 0
         end
     end
+
+    # Session
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore
+    config.session_store :cookie_store, :key => '_namespace_key'
+    config.action_dispatch.cookies_serializer = :json
 
   end
 end
