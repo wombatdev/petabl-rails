@@ -1,8 +1,9 @@
 class ApplicationController < ActionController::API
+    include DeviseTokenAuth::Concerns::SetUserByToken
     before_action :current_user, :cors_preflight_check
     after_action :cors_set_access_control_headers
     # skip_before_action :verify_authenticity_token
-    include DeviseTokenAuth::Concerns::SetUserByToken
+
     # From https://www.airpair.com/ruby-on-rails/posts/authentication-with-angularjs-and-ruby-on-rails
     # include ActionController::MimeResponds
 
