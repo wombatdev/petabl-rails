@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171117215544) do
+ActiveRecord::Schema.define(version: 20180214201434) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,24 +50,16 @@ ActiveRecord::Schema.define(version: 20171117215544) do
   end
 
   create_table "sitters", force: :cascade do |t|
-    t.string "email", null: false
+    t.string "user_id", null: false
     t.string "firstname", null: false
     t.string "lastname", null: false
-    t.string "school", null: false
-    t.string "phone", null: false
-    t.string "address", null: false
-    t.string "residencetype", null: false
-    t.string "facebook", null: false
-    t.string "linkedin"
-    t.string "venmo", null: false
-    t.string "locationpref", null: false
-    t.string "ownsapet", null: false
-    t.string "ownsapetdesc"
-    t.string "experience", null: false
-    t.string "insurance", null: false
-    t.string "additional", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string "address1", null: false
+    t.string "address2"
+    t.string "city", null: false
+    t.string "state", null: false
+    t.string "zipcode", null: false
+    t.string "phone1", null: false
+    t.index ["user_id"], name: "index_sitters_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -97,6 +89,17 @@ ActiveRecord::Schema.define(version: 20171117215544) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
+  end
+
+  create_table "visits", force: :cascade do |t|
+    t.string "sitter_id", null: false
+    t.integer "price", null: false
+    t.integer "distance", null: false
+    t.integer "max_occurences", null: false
+    t.string "times_avail", null: false, array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sitter_id"], name: "index_visits_on_sitter_id"
   end
 
 end

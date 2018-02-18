@@ -15,7 +15,7 @@ class SittersController < ApplicationController
 
   # POST /sitters
   def create
-    @sitter = Sitter.new(sitter_params)
+    @sitter = Sitter.new(sitter_params_create)
 
     if @sitter.save
       render json: @sitter, status: :created, location: @sitter
@@ -45,7 +45,7 @@ class SittersController < ApplicationController
     end
 
     # Only allow a trusted parameter "white list" through.
-    def sitter_params
-      params.fetch(:sitter, {})
+    def sitter_params_create
+      params.require(:sitter).permit(:user_id, :firstname, :lastname, :address1, :address2, :city, :state, :zipcode, :phone1)
     end
 end
