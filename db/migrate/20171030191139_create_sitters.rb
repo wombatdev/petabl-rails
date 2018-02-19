@@ -1,7 +1,7 @@
 class CreateSitters < ActiveRecord::Migration[5.1]
     def change
         create_table :sitters do |t|
-            t.string :user_id, null: false, unique: true, index: true
+            t.references :user, null: false, unique: true, index: true
             t.string :firstname, null: false
             t.string :lastname, null: false
             t.string :address1, null: false

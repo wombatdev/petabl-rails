@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180214201434) do
   end
 
   create_table "sitters", force: :cascade do |t|
-    t.string "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "firstname", null: false
     t.string "lastname", null: false
     t.string "address1", null: false

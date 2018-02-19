@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+    has_one :sitter
+
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable,
@@ -9,6 +12,8 @@ class User < ActiveRecord::Base
     self.uid = SecureRandom.uuid
     skip_confirmation!
   end
+
+
 
 
 end
