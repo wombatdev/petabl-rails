@@ -46,6 +46,6 @@ class SittersController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def sitter_params_create
-      params.require(:sitter).permit(:user_id, :firstname, :lastname, :address1, :address2, :city, :state, :zipcode, :phone1)
+      params.require(:sitter).permit(:user_id, :firstname, :lastname, :address1, :address2, :city, :state, :zipcode, :phone1, :max_distance, :does_visits, :visit_rate, :visit_max_occurences, :visit_times_avail, :does_walking, :walking_rate, :walking_max_occurences, :walking_times_avail)
     end
 end

@@ -59,6 +59,15 @@ ActiveRecord::Schema.define(version: 20180214201434) do
     t.string "state", null: false
     t.string "zipcode", null: false
     t.string "phone1", null: false
+    t.integer "max_distance", null: false
+    t.boolean "does_visits", null: false
+    t.integer "visit_rate"
+    t.integer "visit_max_occurences"
+    t.string "visit_times_avail", array: true
+    t.boolean "does_walking", null: false
+    t.integer "walking_rate"
+    t.integer "walking_max_occurences"
+    t.string "walking_times_avail", array: true
     t.index ["user_id"], name: "index_sitters_on_user_id"
   end
 
