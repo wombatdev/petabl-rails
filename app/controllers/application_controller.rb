@@ -1,5 +1,22 @@
 class ApplicationController < ActionController::API
     include DeviseTokenAuth::Concerns::SetUserByToken
+
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+  protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:account_update, keys: [:firstname, :lastname, :phone1])
+  end
+
+    # prepend_before_action :configure_permitted_parameters, if: :devise_controller?
+    # private
+    # def configure_permitted_parameters
+    #     # devise_parameter_sanitizer.for(:sign_up) << :name
+    #     devise_parameter_sanitizer.for(:account_update) << :firstname << :lastname << :phone1
+    # end
+
+
     # before_action :current_user, :cors_preflight_check
     # after_action :cors_set_access_control_headers
     # skip_before_action :verify_authenticity_token

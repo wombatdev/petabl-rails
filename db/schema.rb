@@ -91,7 +91,14 @@ ActiveRecord::Schema.define(version: 20180214201434) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
-    t.string "name"
+    t.string "firstname", default: "", null: false
+    t.string "lastname", default: "", null: false
+    t.string "address1", default: "", null: false
+    t.string "address2", default: "", null: false
+    t.string "city", default: "", null: false
+    t.string "state", default: "", null: false
+    t.string "zipcode", default: "", null: false
+    t.string "phone1", default: "", null: false
     t.string "nickname"
     t.string "image"
     t.string "email"
